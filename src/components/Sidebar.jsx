@@ -97,7 +97,7 @@ export default function Sidebar({ open, onClose }) {
             )}
 
             <aside
-                className={`sidebar fixed left-0 top-[56px] z-[999] flex flex-col w-[240px] h-[calc(100vh-56px)] overflow-y-auto bg-white pb-[40px] transition-transform duration-300 will-change-transform ${
+                className={`sidebar fixed left-0 top-[56px] z-[999] flex flex-col w-[256px] h-[calc(100vh-56px)] overflow-y-auto bg-white pb-[40px] transition-transform duration-300 will-change-transform ${
                     open ? "translate-x-0" : "-translate-x-full"
                 }`}
             >

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { videos } from "../data/videos";
+import { Videos } from "../data/Videos";
 
 function shuffleArray(arr) {
   const copy = [...arr];
@@ -45,10 +45,29 @@ function SuggestedVideoItem({ video }) {
 }
 
 export default function SuggestedVideos({ excludeVideoId, limit = 12 }) {
+  // #region agent log
+  fetch("http://127.0.0.1:7623/ingest/5cf08144-ba0c-463e-aa05-1aefbc4b1557", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Debug-Session-Id": "4cbb0a",
+    },
+    body: JSON.stringify({
+      sessionId: "4cbb0a",
+      runId: "case-check",
+      hypothesisId: "H3",
+      location: "src/feed/SuggestedVideos.jsx:47",
+      message: "SuggestedVideos module data loaded",
+      data: { excludeVideoId: excludeVideoId ?? null, videosCount: videos.length },
+      timestamp: Date.now(),
+    }),
+  }).catch(() => {});
+  // #endregion
+
   const items = useMemo(() => {
     const filtered = excludeVideoId
-      ? videos.filter((v) => v.videoId !== excludeVideoId)
-      : videos;
+      ? Videos.filter((v) => v.videoId !== excludeVideoId)
+      : Videos;
 
     return shuffleArray(filtered).slice(0, limit);
   }, [excludeVideoId, limit]);

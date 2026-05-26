@@ -19,4 +19,9 @@ export const tags = [
   "Podcasts",
   "Recently Uploaded",
   "New to you",
+  "Shorts",
+  "Ghazal",
+  "Qawwali",
+  "Weather",
+  "Education",
 ];

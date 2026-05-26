@@ -19,7 +19,7 @@ export default function VideoLayout({ children }) {
 
         <main
           className={`px-4 transition-[margin] duration-300 ${
-            sidebarOpen ? "ml-[240px]" : "ml-0"
+            sidebarOpen ? "ml-[256px]" : "ml-0"
           }`}
         >
           <div className="flex flex-col lg:flex-row">

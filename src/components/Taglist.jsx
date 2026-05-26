@@ -13,6 +13,24 @@ const shuffleArray = (arr) => {
 
 export default function TagList({ variant = "main" }) {
   const allTag = "All";
+  // #region agent log
+  fetch("http://127.0.0.1:7623/ingest/5cf08144-ba0c-463e-aa05-1aefbc4b1557", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Debug-Session-Id": "4cbb0a",
+    },
+    body: JSON.stringify({
+      sessionId: "4cbb0a",
+      runId: "case-check",
+      hypothesisId: "H4",
+      location: "src/components/Taglist.jsx:16",
+      message: "TagList module data loaded",
+      data: { variant, tagsCount: tags.length, firstTag: tags[0] ?? null },
+      timestamp: Date.now(),
+    }),
+  }).catch(() => {});
+  // #endregion
 
   const [randomTags] = useState(() => {
     
@@ -66,10 +84,13 @@ export default function TagList({ variant = "main" }) {
     el.scrollTo({ left: next, behavior: "smooth" });
   };
 
+  const navButtonBase =
+    "hidden sm:flex absolute top-1/2 -translate-y-1/2 z-[60] items-center justify-center w-9 h-9 rounded-full bg-white text-black transition-shadow duration-200 hover:bg-[#0000001a] hover:shadow-[0_1px_3px_rgba(0,0,0,0.1)]";
+
   const containerClassName =
     variant === "sidebar"
-      ? "w-full bg-transparent h-[56px] flex items-center"
-      : "sticky top-[56px] z-50 w-full bg-[#fffffffa] h-[56px] flex items-center -mx-4 px-4 transition-[margin] duration-300";
+      ? "relative w-full bg-transparent h-[56px]"
+      : "relative sticky top-[56px] z-50 w-full bg-[#fffffffa] h-[56px] -mx-4 px-4 transition-[margin] duration-300";
 
   return (
     <div className={containerClassName}>
@@ -78,24 +99,24 @@ export default function TagList({ variant = "main" }) {
         type="button"
         onClick={() => scrollByAmount("left")}
         disabled={!canScrollLeft}
-        className={`hidden sm:flex items-center justify-center w-8 h-8 rounded-full mr-1 text-black text-xs font-bold transition-colors ${
-          canScrollLeft ? "bg-[#F2F2F2] hover:bg-[#E5E5E5]" : "opacity-0 pointer-events-none"
+        className={`${navButtonBase} left-0 ${
+          canScrollLeft ? "" : "opacity-0 pointer-events-none"
         }`}
         aria-label="Scroll tags left"
       >
-        <ChevronLeft size={14} />
+        <ChevronLeft size={24} />
       </button>
 
-      {/* Scrollable tag row */}
+      
       <div
         ref={scrollContainerRef}
-        className="flex-1 flex gap-[12px] overflow-hidden scrollbar-none"
+        className="flex h-full w-full items-center gap-[12px] overflow-hidden scrollbar-none px-4"
       >
         {randomTags.map((tag) => (
           <button
             key={tag}
             onClick={() => setSelectedTag(tag)}
-            className={`whitespace-nowrap h-[32px] px-[12px] rounded-[8px] text-[14px] font-medium flex items-center justify-center transition-colors duration-200 ${
+            className={`shrink-0 whitespace-nowrap h-[32px] px-[12px] rounded-[8px] text-[14px] font-medium flex items-center justify-center transition-colors duration-200 ${
               selectedTag === tag
                 ? "bg-black text-white"
                 : "bg-[#F2F2F2] text-black"
@@ -111,12 +132,12 @@ export default function TagList({ variant = "main" }) {
         type="button"
         onClick={() => scrollByAmount("right")}
         disabled={!canScrollRight}
-        className={`hidden sm:flex items-center justify-center w-8 h-8 rounded-full ml-1 text-black text-xs font-bold transition-colors ${
-          canScrollRight ? "bg-[#F2F2F2] hover:bg-[#E5E5E5]" : "opacity-0 pointer-events-none"
+        className={`${navButtonBase} right-0 ${
+          canScrollRight ? "" : "opacity-0 pointer-events-none"
         }`}
         aria-label="Scroll tags right"
       >
-        <ChevronRight size={14} />
+        <ChevronRight size={24} />
       </button>
     </div>
   );

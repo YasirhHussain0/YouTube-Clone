@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { videos } from "../data/Videos";
+import { Videos } from "../data/Videos";
 import { useState } from 'react'
 
 import {
@@ -13,9 +13,27 @@ import {
 
 export default function VideoPage() {
     const { id } = useParams();
+  // #region agent log
+  fetch("http://127.0.0.1:7623/ingest/5cf08144-ba0c-463e-aa05-1aefbc4b1557", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Debug-Session-Id": "4cbb0a",
+    },
+    body: JSON.stringify({
+      sessionId: "4cbb0a",
+      runId: "case-check",
+      hypothesisId: "H2",
+      location: "src/pages/VideoPage.jsx:16",
+      message: "VideoPage module data loaded",
+      data: { routeId: id, videosCount: videos.length },
+      timestamp: Date.now(),
+    }),
+  }).catch(() => {});
+  // #endregion
 
     const embedUrl = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-    const video = videos.find((v) => v.videoId === id);
+    const video = Videos.find((v) => v.videoId === id);
     const getInitials = (name) => {
         return name
             .split(" ")
