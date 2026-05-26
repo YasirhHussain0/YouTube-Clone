@@ -1,0 +1,25 @@
+.sidebar::-webkit-scrollbar {
+    width: 0px;
+}
+
+.sidebar:hover::-webkit-scrollbar {
+    width: 6px;
+    position: relative;
+    z-index: 10;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #777;
+    border-radius: 9999px;
+}
+
+
+/* ------------------------------------------------- */
+
+
+
+
