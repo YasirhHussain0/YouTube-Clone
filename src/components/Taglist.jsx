@@ -90,7 +90,7 @@ export default function TagList({ variant = "main" }) {
   const containerClassName =
     variant === "sidebar"
       ? "relative w-full bg-transparent h-[56px]"
-      : "relative sticky top-[56px] z-50 bg-[#fffffffa] h-[56px] -mx-4 px-4 transition-[margin] duration-300";
+      : "relative sticky top-[56px] z-50 bg-[#fffffffa] w-auto h-[56px] -mx-4 px-4 transition-[margin] duration-300";
 
   return (
     <div className={containerClassName}>
