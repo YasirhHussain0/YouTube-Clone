@@ -66,7 +66,14 @@ export default function ShortsShelf() {
       </div>
 
       {/* single horizontal row, responsive visible columns */}
-      <div className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[48%] md:auto-cols-[32%] xl:auto-cols-[19%] gap-2 overflow-x-auto overflow-y-hidden">
+      <div className=" grid
+    grid-flow-col
+    auto-cols-[100%]
+    sm:auto-cols-[calc((100%-0.5rem)/2)]
+    md:auto-cols-[calc((100%-1rem)/3)]
+    xl:auto-cols-[calc((100%-2rem)/5)]
+    gap-2
+    overflow-x-hidden">
         {visibleShorts.map((short) => (
           <div key={short.id}>
             <ShortsCard short={short} />

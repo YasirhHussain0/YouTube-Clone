@@ -18,6 +18,8 @@ import {
     PlaySquare,
     ArrowDownToLine,
     Trophy,
+    TvMinimalPlay,
+    CircleUser,
 } from "lucide-react";
 
 const explorelist = [
@@ -84,210 +86,243 @@ const morefromYt = [
     }
 ]
 
-export default function Sidebar({ open, onClose }) {
+export default function Sidebar({ open }) {
     return (
         <>
-            {open && (
-                <button
-                    type="button"
-                    onClick={onClose}
-                    className="fixed inset-0 top-[56px] z-[998] bg-black/40 lg:hidden"
-                    aria-label="Close sidebar"
-                />
-            )}
 
             <aside
-                className={`sidebar fixed left-0 top-[56px] z-[999] flex flex-col w-[256px] h-[calc(100vh-56px)] overflow-y-auto bg-white pb-[40px] transition-transform duration-300 will-change-transform ${
-                    open ? "translate-x-0" : "-translate-x-full"
-                }`}
+                className={`sidebar fixed left-0 top-[56px] z-[999] flex flex-col w-[256px] h-[calc(100vh-56px)] overflow-y-auto bg-white pb-[40px] transition-transform duration-300 will-change-transform ${open ? "w-[256px]" : "w-[72px]"
+                    }`}
             >
+                {!open && (
+                    <div className="flex flex-col items-center px-2 pt-2">
+                        <Link to="/" className="w-[64px] grid place-items-center rounded-[10px] text-black pt-[14px] pb-[16px] hover:bg-[#F2F2F2]">
+                            <House size={24} />
+                            <span className="text-[10px] text-black font-normal lheight-[12px] nowrap max-h-[14px]">
+                            Home
+                        </span>
+                        </Link>
+                        
 
-            {/* Main Navigation */}
-            <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
+                        <Link to="/shorts" className="w-[64px] pt-[14px] pb-[16px] grid place-items-center rounded-[10px] text-black hover:bg-[#F2F2F2]">
+                            <img src={Shorts} alt="Shorts" className="w-[24px] h-[24px] lheight-[12px] nowrap" />
+                            <span className="text-[10px] text-black font-normal lheight-[12px] nowrap max-h-[14px] ">
+                                Shorts
+                            </span>
+                        </Link>
+                        
 
-                <Link to="/" className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200">
+                        <Link to="/subscriptions" className="w-[64px] pt-[14px] pb-[16px] grid place-items-center rounded-[10px] text-black hover:bg-[#F2F2F2]">
+                            <TvMinimalPlay className="w-[24px] h-[24px]" />
+                            <span className="text-[10px] text-black font-normal lheight-[12px] nowrap max-h-[14px]">
+                                Subscriptions
+                            </span>
+                        </Link>
 
-                    <div className="me-[24px] text-black grid place-items-center">
-                        <House size={24} />
+                        <Link to="/" className="w-[64px] pt-[14px] pb-[16px] grid place-items-center rounded-[10px] text-black hover:bg-[#F2F2F2]">
+                            <CircleUser className="w-[24px] h-[24px]" />
+                            <span className="text-[10px] text-black font-normal lheight-[12px] nowrap max-h-[14px]">
+                                You
+                            </span>
+                        </Link>
+
+                    </div>
+                )}
+
+                {open && (
+                    <div className="flex flex-col gap-1 py-4">
+                        {/* Main Navigation */}
+                        <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
+
+                            <Link to="/" className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200">
+
+                                <div className="me-[24px] text-black grid place-items-center">
+                                    <House size={24} />
+                                </div>
+
+                                <span className="text-[14px] text-black font-medium">
+                                    Home
+                                </span>
+
+                            </Link>
+
+                            <Link
+                                to="/shorts"
+                                className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200"
+                            >
+
+                                <img
+                                    src={Shorts}
+                                    alt="Shorts"
+                                    className="w-[24px] h-[24px] me-[24px]"
+                                />
+
+                                <span className="text-[14px] text-black font-medium">
+                                    Shorts
+                                </span>
+
+                            </Link>
+
+                        </div>
+
+                        {/* Subscriptions */}
+                        <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
+
+                            <button className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200">
+
+                                <span className="text-[16px] text-black font-medium">
+                                    Subscriptions
+                                </span>
+
+                                <span className="text-black ml-[14px]">
+                                    <ChevronRight size={18} />
+                                </span>
+
+                            </button>
+
+                            {[
+                                "Gb Musical Band Skardu",
+                                "Zulfiqarraazofficial",
+                                "Yasir Hussain",
+                                "Ruhullah Vazir",
+                                "Anchan Art",
+                                "Alkamal channel",
+                            ].map((channel) => (
+
+                                <button
+                                    key={channel}
+                                    className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200"
+                                >
+
+                                    <div className="h-[24px] w-[24px] rounded-full me-[24px] bg-black text-white grid place-items-center text-sm font-semibold ">
+                                        {channel.charAt(0)}
+                                    </div>
+
+                                    <span className="text-[14px] text-black text-left text-ellipsis whitespace-nowrap overflow-hidden">
+                                        {channel}
+                                    </span>
+
+                                </button>
+
+                            ))}
+
+                        </div>
+
+                        {/*Feed*/}
+                        <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
+
+                            <button className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200">
+
+                                <span className="text-[16px] text-black font-medium">
+                                    You
+                                </span>
+
+                                <span className="text-black ml-[14px]">
+                                    <ChevronRight size={18} />
+                                </span>
+
+                            </button>
+
+                            {feedlist.map((item) => (
+
+                                <button
+                                    key={item.title}
+                                    className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200"
+                                >
+
+                                    <div className="h-[24px] w-[24px] me-[24px] text-black grid place-items-center text-sm font-semibold ">
+                                        {item.icon}
+                                    </div>
+
+                                    <span className="text-[14px] text-black text-left text-ellipsis whitespace-nowrap overflow-hidden">
+                                        {item.title}
+                                    </span>
+
+                                </button>
+
+                            ))}
+
+                        </div>
+
+
+                        {/*Explore*/}
+                        <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
+
+                            <button className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200">
+
+                                <span className="text-[16px] text-black font-medium">
+                                    Explore
+                                </span>
+
+                                <span className="text-black ml-[14px]">
+                                    <ChevronRight size={18} />
+                                </span>
+
+                            </button>
+
+                            {explorelist.map((item) => (
+
+                                <button
+                                    key={item.title}
+                                    className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200"
+                                >
+
+                                    <div className="h-[24px] w-[24px] me-[24px] text-black grid place-items-center text-sm font-semibold ">
+                                        {item.icon}
+                                    </div>
+
+                                    <span className="text-[14px] text-black text-left text-ellipsis whitespace-nowrap overflow-hidden">
+                                        {item.title}
+                                    </span>
+
+                                </button>
+
+                            ))}
+
+                        </div>
+
+
+                        {/*More from Youtube*/}
+                        <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
+
+                            <button className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200">
+
+                                <span className="text-[16px] text-black font-medium">
+                                    More from YouTube
+                                </span>
+
+                                <span className="text-black ml-[14px]">
+                                    <ChevronRight size={18} />
+                                </span>
+
+                            </button>
+
+                            {morefromYt.map((item) => (
+
+                                <button
+                                    key={item.title}
+                                    className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200"
+                                >
+
+                                    <div className="h-[24px] w-[24px] me-[24px] text-black grid place-items-center text-sm font-semibold ">
+                                        {item.icon}
+                                    </div>
+
+                                    <span className="text-[14px] text-black text-left text-ellipsis whitespace-nowrap overflow-hidden">
+                                        {item.title}
+                                    </span>
+
+                                </button>
+
+                            ))}
+
+                        </div>
+
+
                     </div>
 
-                    <span className="text-[14px] text-black font-medium">
-                        Home
-                    </span>
+                )}
 
-                </Link>
-
-                <Link
-                    to="/shorts"
-                    className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200"
-                >
-
-                    <img
-                        src={Shorts}
-                        alt="Shorts"
-                        className="w-[24px] h-[24px] me-[24px]"
-                    />
-
-                    <span className="text-[14px] text-black font-medium">
-                        Shorts
-                    </span>
-
-                </Link>
-
-            </div>
-
-            {/* Subscriptions */}
-            <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
-
-                <button className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200">
-
-                    <span className="text-[16px] text-black font-medium">
-                        Subscriptions
-                    </span>
-
-                    <span className="text-black ml-[14px]">
-                        <ChevronRight size={18} />
-                    </span>
-
-                </button>
-
-                {[
-                    "Gb Musical Band Skardu",
-                    "Zulfiqarraazofficial",
-                    "Yasir Hussain",
-                    "Ruhullah Vazir",
-                    "Anchan Art",
-                    "Alkamal channel",
-                ].map((channel) => (
-
-                    <button
-                        key={channel}
-                        className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200"
-                    >
-
-                        <div className="h-[24px] w-[24px] rounded-full me-[24px] bg-black text-white grid place-items-center text-sm font-semibold ">
-                            {channel.charAt(0)}
-                        </div>
-
-                        <span className="text-[14px] text-black text-left text-ellipsis whitespace-nowrap overflow-hidden">
-                            {channel}
-                        </span>
-
-                    </button>
-
-                ))}
-
-            </div>
-
-            {/*Feed*/}
-            <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
-
-                <button className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200">
-
-                    <span className="text-[16px] text-black font-medium">
-                        You
-                    </span>
-
-                    <span className="text-black ml-[14px]">
-                        <ChevronRight size={18} />
-                    </span>
-
-                </button>
-
-                {feedlist.map((item) => (
-
-                    <button
-                        key={item.title}
-                        className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200"
-                    >
-
-                        <div className="h-[24px] w-[24px] me-[24px] text-black grid place-items-center text-sm font-semibold ">
-                            {item.icon}
-                        </div>
-
-                        <span className="text-[14px] text-black text-left text-ellipsis whitespace-nowrap overflow-hidden">
-                            {item.title}
-                        </span>
-
-                    </button>
-
-                ))}
-
-            </div>
-
-
-            {/*Explore*/}
-            <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
-
-                <button className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200">
-
-                    <span className="text-[16px] text-black font-medium">
-                        Explore
-                    </span>
-
-                    <span className="text-black ml-[14px]">
-                        <ChevronRight size={18} />
-                    </span>
-
-                </button>
-
-                {explorelist.map((item) => (
-
-                    <button
-                        key={item.title}
-                        className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200"
-                    >
-
-                        <div className="h-[24px] w-[24px] me-[24px] text-black grid place-items-center text-sm font-semibold ">
-                            {item.icon}
-                        </div>
-
-                        <span className="text-[14px] text-black text-left text-ellipsis whitespace-nowrap overflow-hidden">
-                            {item.title}
-                        </span>
-
-                    </button>
-
-                ))}
-
-            </div>
-
-
-            {/*More from Youtube*/}
-            <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
-
-                <button className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200">
-
-                    <span className="text-[16px] text-black font-medium">
-                        More from YouTube
-                    </span>
-
-                    <span className="text-black ml-[14px]">
-                        <ChevronRight size={18} />
-                    </span>
-
-                </button>
-
-                {morefromYt.map((item) => (
-
-                    <button
-                        key={item.title}
-                        className="flex items-center px-3 h-[40px] rounded-xl hover:bg-[#F2F2F2] transition-colors duration-200"
-                    >
-
-                        <div className="h-[24px] w-[24px] me-[24px] text-black grid place-items-center text-sm font-semibold ">
-                            {item.icon}
-                        </div>
-
-                        <span className="text-[14px] text-black text-left text-ellipsis whitespace-nowrap overflow-hidden">
-                            {item.title}
-                        </span>
-
-                    </button>
-
-                ))}
-
-            </div>
 
 
             </aside>
@@ -297,4 +332,3 @@ export default function Sidebar({ open, onClose }) {
 
 
 
- 
