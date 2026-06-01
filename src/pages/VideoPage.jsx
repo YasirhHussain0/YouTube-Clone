@@ -26,7 +26,7 @@ export default function VideoPage() {
       hypothesisId: "H2",
       location: "src/pages/VideoPage.jsx:16",
       message: "VideoPage module data loaded",
-      data: { routeId: id, videosCount: videos.length },
+      data: { routeId: id, videosCount: Videos.length },
       timestamp: Date.now(),
     }),
   }).catch(() => {});

@@ -58,8 +58,8 @@ export default function SuggestedVideos({ excludeVideoId, limit = 12 }) {
       hypothesisId: "H3",
       location: "src/feed/SuggestedVideos.jsx:47",
       message: "SuggestedVideos module data loaded",
-      data: { excludeVideoId: excludeVideoId ?? null, videosCount: videos.length },
-      timestamp: Date.now(),
+      data: { excludeVideoId: excludeVideoId ?? null, videosCount: Videos.length },
+      // timestamp: Date.now(),
     }),
   }).catch(() => {});
   // #endregion
