@@ -20,6 +20,126 @@
 
 /* ------------------------------------------------- */
 
+.tf-room-gallery-section {
+    margin: 30px 0;
+}
 
+.tf-gallery-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tf-gallery-main img {
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.tf-gallery-thumbs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.tf-thumb {
+    width: 210px;
+    height: 210px;
+    flex: 0 0 auto;
+    cursor: pointer;
+    opacity: 0.6;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+.tf-thumb.active {
+    opacity: 1;
+    border-color: var(--tf-primary);
+}
+
+.tf-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tf-overview-popular-facilities ul li{
+    width:45%!important;
+}
+button.tf_btn.tf_btn_full.tf_btn_rounded.tf-submit.hotel-room-book {
+    background:#e64b50 !important;
+    min-height:35px!important;
+    border-radius:0;
+}
+.tf-single-booking-box-bottom{
+    flex-direction:column!important;
+}
+.single-tf_room .tf-single-template__two .tf-details-right .tf-single-booking-box-wrapper .tf-single-booking-box-bottom .tf-select-guests, .single-tf_room .tf-single-template__two .tf-details-right .tf-single-booking-box-wrapper .tf-single-booking-box-bottom .tf-select-room{
+    width:100%!important;
+}
+.tf_acrselection .acr-dec, .tf_acrselection .acr-inc{
+    height:20px!important;
+    width:20px!important;
+    min-width:20px!important;
+    min-height:20px!important;
+}
+.tf_acrselection{
+    min-width:fit-content!important;
+}
+.tf_acrselection .arc-select{
+    min-width:fit-content!important;
+    width:70px!important;
+}
+.tf_acrselection input{
+    min-width:40px!important;
+}
+.tf_acrselection svg{
+    width:16px!important;
+    height:16px!important;
+}
+.tf_acrselection svg path{
+    fill:black!important;
+    color:black!important;
+    stroke:black !important;
+    
+}
+.tf-not-included-house-rules span li::after{
+    display:none!important;
+}
+.tf-included-house-rules span li::after{
+    display:none!important;
+}
+
+.tf-house-rules-wrapper span ul li::marker{
+    display:none!important;
+    color: transparent;
+}
+.tf-house-rules-wrapper{
+    gap:70px!important;
+}
+.tf-house-rules-wrapper span ul li{
+    font-size:14px!important;
+}
+
+.single-tf_room .tf-single-template__two .tf-house-rules .tf-house-rules-wrapper .tf-not-included-house-rules li::after, .single-tf_room .tf-single-template__two .tf-house-rules .tf-house-rules-wrapper .tf-included-house-rules li::after{
+    left:-16px;
+    width:1px;
+}
+
+.tf-included-house-rules span li::before{
+    font-size:14px!important;
+    left:-25px!important;
+    
+}
+.tf-not-included-house-rules span li::before{
+    font-size:14px!important;
+    left:-25px!important;
+}
+.tf-house-rules-wrapper .tf-included-house-rules, .tf-house-rules-wrapper .tf-not-included-house-rules{
+    flex:0 0 calc(45% - 15px)!important;
+    padding:0!important;
+}
 
 
