@@ -27,7 +27,7 @@ export default function TagList({ variant = "main" }) {
       location: "src/components/Taglist.jsx:16",
       message: "TagList module data loaded",
       data: { variant, tagsCount: tags.length, firstTag: tags[0] ?? null },
-      timestamp: Date.now(),
+      // timestamp: Date.now(),
     }),
   }).catch(() => {});
   // #endregion
@@ -41,7 +41,7 @@ export default function TagList({ variant = "main" }) {
 
     const shuffled = shuffleArray(uniqueTags);
 
-    return [allTag, ...shuffled.slice(0, 14)];
+    return [allTag, ...shuffled.slice(0, 20)];
   });
 
   const [selectedTag, setSelectedTag] = useState(allTag);
@@ -85,7 +85,7 @@ export default function TagList({ variant = "main" }) {
   };
 
   const navButtonBase =
-    "hidden sm:flex absolute top-1/2 -translate-y-1/2 z-[60] items-center justify-center w-9 h-9 rounded-full bg-white text-black transition-shadow duration-200 hover:bg-[#0000001a] hover:shadow-[0_1px_3px_rgba(0,0,0,0.1)]";
+    "hidden sm:flex absolute top-1/2 -translate-y-1/2 z-[60] items-center justify-center w-9 h-9 rounded-full bg-white text-black transition-shadow duration-200 hover:bg-[#ededed] hover:shadow-[0_1px_3px_rgba(0,0,0,0.1)]";
 
   const containerClassName =
     variant === "sidebar"

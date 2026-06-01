@@ -27,7 +27,7 @@ export default function VideoPage() {
       location: "src/pages/VideoPage.jsx:16",
       message: "VideoPage module data loaded",
       data: { routeId: id, videosCount: Videos.length },
-      timestamp: Date.now(),
+    //   timestamp: Date.now(),
     }),
   }).catch(() => {});
   // #endregion
@@ -100,9 +100,9 @@ export default function VideoPage() {
                             </button>
                             <button
                                 onClick={() => setDislikes(dislikes + 1)}
-                                className="flex bg-[#0000000d] gap-2 items-center rounded-r-full px-[12px] text-black text-sm font-medium py-2 hover:bg-[#E5E5E5]">
+                                className="flex bg-[#0000000d] gap-2 items-center rounded-r-full px-[12px] pl-0 text-black text-sm font-medium py-2 hover:bg-[#E5E5E5]">
                                 {dislikes > 0 && (
-                                    <span>
+                                    <span className="pl-2 border-l border-gray-300">
                                         {formatNumber(dislikes)}
                                     </span>
                                 )
