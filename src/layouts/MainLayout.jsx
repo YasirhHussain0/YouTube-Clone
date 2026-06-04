@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import Offcanvas from "../components/Offcanvas";
+import Offcanvas from "../components/offcanvas";
 
 export default function MainLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
