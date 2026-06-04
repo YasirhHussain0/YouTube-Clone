@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Shorts from "../assets/shorts.svg";
 import News from "../assets/news.svg?react";
 import Music from "../assets/Music.svg?react";
@@ -86,23 +87,38 @@ const morefromYt = [
     }
 ]
 
+
 export default function Sidebar({ open }) {
+    const [showSubscriptionsMenu, setShowSubscriptionsMenu] = useState(false);
+    const [showProfileMenu, setShowProfileMenu] = useState(false);
+
     return (
         <>
 
             <aside
-                className={`sidebar fixed left-0 top-[56px] z-[999] flex flex-col w-[256px] h-[calc(100vh-56px)] overflow-y-auto bg-white pb-[40px] transition-transform duration-300 will-change-transform ${open ? "w-[256px]" : "w-[72px]"
-                    }`}
+                className={`
+  sidebar fixed left-0 top-[56px] z-[999]
+  bg-white pb-[40px]
+  overflow-y-auto overflow-x-visible
+  transition-all duration-300
+
+  xl:h-[calc(100vh-56px)]
+
+  ${open
+                        ? "translate-x-0 w-[256px]"
+                        : "xl:w-[72px] xl:translate-x-0 -translate-x-full xl:block"
+                    }
+`}
             >
                 {!open && (
                     <div className="flex flex-col items-center px-2 pt-2">
                         <Link to="/" className="w-[64px] grid place-items-center rounded-[10px] text-black pt-[14px] pb-[16px] hover:bg-[#F2F2F2]">
                             <House size={24} />
                             <span className="text-[10px] text-black font-normal lheight-[12px] nowrap max-h-[14px]">
-                            Home
-                        </span>
+                                Home
+                            </span>
                         </Link>
-                        
+
 
                         <Link to="/shorts" className="w-[64px] pt-[14px] pb-[16px] grid place-items-center rounded-[10px] text-black hover:bg-[#F2F2F2]">
                             <img src={Shorts} alt="Shorts" className="w-[24px] h-[24px] lheight-[12px] nowrap" />
@@ -110,27 +126,45 @@ export default function Sidebar({ open }) {
                                 Shorts
                             </span>
                         </Link>
-                        
 
-                        <Link to="/subscriptions" className="w-[64px] pt-[14px] pb-[16px] grid place-items-center rounded-[10px] text-black hover:bg-[#F2F2F2]">
-                            <TvMinimalPlay className="w-[24px] h-[24px]" />
-                            <span className="text-[10px] text-black font-normal lheight-[12px] nowrap max-h-[14px]">
-                                Subscriptions
-                            </span>
-                        </Link>
 
-                        <Link to="/" className="w-[64px] pt-[14px] pb-[16px] grid place-items-center rounded-[10px] text-black hover:bg-[#F2F2F2]">
-                            <CircleUser className="w-[24px] h-[24px]" />
-                            <span className="text-[10px] text-black font-normal lheight-[12px] nowrap max-h-[14px]">
-                                You
-                            </span>
-                        </Link>
+                        <div
+                            onMouseEnter={() => setShowSubscriptionsMenu(true)}
+                            onMouseLeave={() => setShowSubscriptionsMenu(false)}
+                            className="w-[64px]"
+                        >
+                            <Link
+                                to="/subscriptions"
+                                className="w-[64px] pt-[14px] pb-[16px] grid place-items-center rounded-[10px] text-black hover:bg-[#F2F2F2]"
+                            >
+                                <TvMinimalPlay className="w-[24px] h-[24px]" />
+
+                                <span className="text-[10px] text-black font-normal leading-[12px]">
+                                    Subscriptions
+                                </span>
+                            </Link>
+                        </div>
+
+                        <div
+                            onMouseEnter={() => setShowProfileMenu(true)}
+                            onMouseLeave={() => setShowProfileMenu(false)}
+                            className="w-[64px]">
+                            <Link to="/" className="w-[64px] pt-[14px] pb-[16px] grid place-items-center rounded-[10px] text-black hover:bg-[#F2F2F2]">
+                                <CircleUser className="w-[24px] h-[24px]" />
+                                <span className="text-[10px] text-black font-normal lheight-[12px] nowrap max-h-[14px]">
+                                    You
+                                </span>
+                            </Link>
+                        </div>
+
+
 
                     </div>
                 )}
 
                 {open && (
                     <div className="flex flex-col gap-1 py-4">
+                        
                         {/* Main Navigation */}
                         <div className="flex flex-col gap-1 p-3 border-b border-gray-300">
 
@@ -162,6 +196,8 @@ export default function Sidebar({ open }) {
                                 </span>
 
                             </Link>
+
+
 
                         </div>
 
@@ -326,6 +362,77 @@ export default function Sidebar({ open }) {
 
 
             </aside>
+            {showSubscriptionsMenu && !open && (
+                <div
+                    className="fixed left-[75px] top-[200px] z-[2000] transition-all duration-300"
+                    onMouseEnter={() => setShowSubscriptionsMenu(true)}
+                    onMouseLeave={() => setShowSubscriptionsMenu(false)}
+                >
+                    <div className="w-56 bg-white rounded-[12px] shadow-lg py-2">
+
+                        <h3 className="text-black p-3 pt-0 text-lg font-medium text-left">Subscription</h3>
+                        {[
+                            "Gb Musical Band Skardu",
+                            "Zulfiqarraazofficial",
+                            "Yasir Hussain",
+                            "Ruhullah Vazir",
+                            "Anchan Art",
+                            "Alkamal channel",
+                        ].map((channel) => (
+
+                            <button
+                                key={channel}
+                                className="flex items-center w-full px-3 h-[40px] hover:bg-[#F2F2F2] transition-colors duration-200"
+                            >
+
+                                <div className="h-[24px] w-[24px] rounded-full me-[24px] bg-black text-white grid place-items-center text-sm font-semibold ">
+                                    {channel.charAt(0)}
+                                </div>
+
+                                <span className="text-[14px] text-black text-left text-ellipsis whitespace-nowrap overflow-hidden">
+                                    {channel}
+                                </span>
+
+                            </button>
+
+                        ))}
+
+                    </div>
+
+                </div>
+            )}
+            {showProfileMenu && !open && (
+                <div
+                    className="fixed left-[75px] top-[270px] z-[2000]"
+                    onMouseEnter={() => setShowProfileMenu(true)}
+                    onMouseLeave={() => setShowProfileMenu(false)}
+                >
+                    <div className="w-56 bg-white rounded-[12px] shadow-lg py-2">
+
+                        <h3 className="text-black p-3 pt-0 text-lg font-medium text-left">You</h3>
+                        {feedlist.map((item) => (
+
+                            <button
+                                key={item.title}
+                                className="flex items-center px-3 h-[40px] w-full hover:bg-[#F2F2F2] transition-colors duration-200"
+                            >
+
+                                <div className="h-[24px] w-[24px] me-[24px] text-black grid place-items-center text-sm font-semibold ">
+                                    {item.icon}
+                                </div>
+
+                                <span className="text-[14px] text-black text-left text-ellipsis whitespace-nowrap overflow-hidden">
+                                    {item.title}
+                                </span>
+
+                            </button>
+
+                        ))}
+
+                    </div>
+
+                </div>
+            )}
         </>
     );
 }

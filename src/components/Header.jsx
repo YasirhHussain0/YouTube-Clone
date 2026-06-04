@@ -2,19 +2,28 @@ import { Link } from "react-router-dom";
 import Logo from '/Logo_youtube.svg'
 import Profile from '../assets/profile.jpeg'
 import { Search, Menu, Plus, Bell } from 'lucide-react'
-export default function Header({ onMenuClick }) {
+export default function Header({ onMenuClick,
+  onOffcanvasClick, }) {
     return (
         <header className="w-full min-h-[56px] flex justify-between items-center px-4 fixed z-[1000] bg-[#fffffffa]">
             <div className='flex items-center'>
                 <button
                     type="button"
                     onClick={onMenuClick}
-                    className="h-[40px] w-[40px] grid text-black place-items-center rounded-full hover:bg-[#E5E5E5] transition-all duration-600"
+                    className="h-[40px] w-[40px] text-black place-items-center rounded-full hover:bg-[#E5E5E5] transition-all duration-600 hidden xl:block"
                     aria-label="Toggle sidebar"
                 >
                     <Menu size={24} />
                 </button>
-                <Link to="/" href='#' className=' py-[18px] px-[14px]'>
+                <button
+                    type="button"
+                    onClick={onOffcanvasClick}
+                    className="h-[40px] w-[40px] text-black place-items-center rounded-full hover:bg-[#E5E5E5] transition-all duration-600 block xl:hidden"
+                    aria-label="Toggle sidebar"
+                >
+                    <Menu size={24} />
+                </button>
+                <Link to="/" className=' py-[18px] px-[14px]'>
                     <img
                         className='h-[25px] w-[98px]'
                         src={Logo} alt='Logo' />
